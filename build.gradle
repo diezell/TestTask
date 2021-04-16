@@ -19,6 +19,8 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.16'
+    annotationProcessor 'org.projectlombok:lombok:1.18.16'
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.1.4'
 
 }
 
