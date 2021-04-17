@@ -12,14 +12,15 @@ public class PollResponse {
 
     private String name;
 
-//    @DateTimeFormat(iso = DateTimeFormatter.ISO_LOCAL_DATE_TIME)
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
     private LocalDateTime startDate;
 
-    @JsonFormat(pattern = "dd-MM-yyyy")
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
     private LocalDateTime finishDate;
 
-    @JsonFormat(pattern = "dd-MM-yyyy")
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
     private LocalDateTime creationDate;
+
+    private boolean activity;
 
 }

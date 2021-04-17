@@ -12,7 +12,6 @@ public class PollRequest {
 
     private String name;
 
-//    @DateTimeFormat(iso = DateTimeFormatter.ISO_LOCAL_DATE_TIME)
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
     private LocalDateTime startDate;
 
