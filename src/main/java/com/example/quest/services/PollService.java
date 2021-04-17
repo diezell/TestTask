@@ -1,9 +1,11 @@
 package com.example.quest.services;
 
-import com.example.quest.dto.PollRequest;
-import com.example.quest.dto.PollResponse;
-import com.example.quest.dto.PollsResponse;
+import com.example.quest.dtoPoll.PollChangeRequest;
+import com.example.quest.dtoPoll.PollRequest;
+import com.example.quest.dtoPoll.PollResponse;
+import com.example.quest.dtoPoll.PollsResponse;
 import com.example.quest.entities.PollEntity;
+import com.example.quest.exceptions.NotFoundException;
 import com.example.quest.repositories.PollRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,8 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
+/**
+ * Сервис опросов
+ */
 @Service
 public class PollService {
 
@@ -42,17 +46,39 @@ public class PollService {
         PollsResponse pollsResponse = new PollsResponse();
         List<PollResponse> listOfResponses = new ArrayList<>();
         listOfEntities.forEach(list -> listOfResponses.add(pollResponseConverter(list)));
-
         pollsResponse.setPolls(listOfResponses);
         return pollsResponse;
-
     }
+
+    public PollResponse changePoll(PollChangeRequest request, UUID id) throws NotFoundException {
+        PollEntity entity = pollRepository.findById(id).orElseThrow(() -> new NotFoundException("Poll was not found"));
+        if (!request.getName().isEmpty()) {
+            entity.setName(request.getName());
+        }
+        if (request.getStartDate() != null) {
+            entity.setStartDate(request.getStartDate());
+        }
+        if (request.getFinishDate() != null) {
+            entity.setFinishDate(request.getFinishDate());
+        }
+        pollRepository.save(entity);
+        return pollResponseConverter(entity);
+    }
+
+    public void deletePoll(UUID id) {
+        pollRepository.deleteById(id);
+        /*
+             Реализовать удаление вопросов от этого опроса
+         */
+    }
+
 
 
 
 
     private PollResponse pollResponseConverter(PollEntity entity) {
         PollResponse response = new PollResponse();
+        response.setId(entity.getId());
         response.setName(entity.getName());
         response.setStartDate(entity.getStartDate());
         response.setFinishDate(entity.getFinishDate());
@@ -71,5 +97,7 @@ public class PollService {
         }
         return isAct;
     }
+
+
 
 }

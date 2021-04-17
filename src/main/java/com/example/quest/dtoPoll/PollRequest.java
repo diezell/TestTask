@@ -1,15 +1,20 @@
-package com.example.quest.dto;
+package com.example.quest.dtoPoll;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
+/**
+ * DTO-запрос на создание опроса
+ */
 @Data
 public class PollRequest {
 
+    @NotBlank
+    @Size(max = 40)
     private String name;
 
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm")

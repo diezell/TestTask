@@ -6,6 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
+/**
+ * Репозиторий опросов
+ */
 @Repository
 public interface PollRepository extends JpaRepository<PollEntity, UUID> {
 
