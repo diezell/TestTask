@@ -51,7 +51,6 @@ public class PollService {
 
 
 
-
     private PollResponse pollResponseConverter(PollEntity entity) {
         PollResponse response = new PollResponse();
         response.setName(entity.getName());
