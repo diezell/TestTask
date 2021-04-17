@@ -2,10 +2,9 @@ package com.example.quest.entities;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -17,6 +16,7 @@ import java.util.UUID;
 public class PollEntity {
 
     @Id
+    @Column(name = "poll_id")
     private UUID id;
 
     private String name;
@@ -28,5 +28,8 @@ public class PollEntity {
     private LocalDateTime creationDate;
 
     private boolean activity;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pollEntity")
+    private List<QuestionEntity> questions;
 
 }

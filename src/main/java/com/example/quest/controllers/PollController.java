@@ -40,6 +40,16 @@ public class PollController {
     }
 
     /**
+     * GET-запрос на получение опроса
+     * @param id - id нужного опроса
+     * @return - возвращает найденный опрос
+     */
+    @GetMapping("/{id}")
+    public PollResponse getPoll(@PathVariable("id") UUID id) throws NotFoundException {
+        return pollService.getPoll(id);
+    }
+
+    /**
      * POST-запрос на создание опроса
      * @param request - тело запроса с параметрами
      * @return - возвращает созданный опрос

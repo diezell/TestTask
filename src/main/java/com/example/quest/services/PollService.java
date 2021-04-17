@@ -50,6 +50,11 @@ public class PollService {
         return pollsResponse;
     }
 
+    public PollResponse getPoll(UUID id) throws NotFoundException {
+        PollEntity entity = pollRepository.findById(id).orElseThrow(() -> new NotFoundException("Poll was not found"));
+        return pollResponseConverter(entity);
+    }
+
     public PollResponse changePoll(PollChangeRequest request, UUID id) throws NotFoundException {
         PollEntity entity = pollRepository.findById(id).orElseThrow(() -> new NotFoundException("Poll was not found"));
         if (!request.getName().isEmpty()) {
