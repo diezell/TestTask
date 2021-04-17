@@ -52,7 +52,6 @@ public class QuestionService {
 
 
 
-
     private QuestionResponse questionResponseConverter(QuestionEntity entity) {
         QuestionResponse response = new QuestionResponse();
         response.setId(entity.getId());
