@@ -72,7 +72,7 @@ public class PollController {
     }
 
     /**
-     * DELETE-запрос на удаление опроса
+     * DELETE-запрос на удаление опроса и всех связанных вопросов
      * @param id - id удаляемого опроса
      */
     @DeleteMapping("/{id}")

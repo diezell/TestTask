@@ -16,8 +16,6 @@ public class QuestionEntity {
     @Id
     private UUID id;
 
-    private String link;
-
     private String text;
 
     private String response;

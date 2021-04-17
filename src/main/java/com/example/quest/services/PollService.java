@@ -5,8 +5,10 @@ import com.example.quest.dtoPoll.PollRequest;
 import com.example.quest.dtoPoll.PollResponse;
 import com.example.quest.dtoPoll.PollsResponse;
 import com.example.quest.entities.PollEntity;
+import com.example.quest.entities.QuestionEntity;
 import com.example.quest.exceptions.NotFoundException;
 import com.example.quest.repositories.PollRepository;
+import com.example.quest.repositories.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,9 +26,12 @@ public class PollService {
 
     private final PollRepository pollRepository;
 
+    private final QuestionRepository questionRepository;
+
     @Autowired
-    public PollService(PollRepository pollRepository) {
+    public PollService(PollRepository pollRepository, QuestionRepository questionRepository) {
         this.pollRepository = pollRepository;
+        this.questionRepository = questionRepository;
     }
 
     public PollResponse createPoll(PollRequest request) {
@@ -71,15 +76,10 @@ public class PollService {
     }
 
     public void deletePoll(UUID id) {
+        List<QuestionEntity> allQuestions = questionRepository.findAllByPollEntityId(id);
+        allQuestions.forEach(question -> questionRepository.deleteById(question.getId()));
         pollRepository.deleteById(id);
-        /*
-             Реализовать удаление вопросов от этого опроса
-         */
     }
-
-
-
-
 
     private PollResponse pollResponseConverter(PollEntity entity) {
         PollResponse response = new PollResponse();
@@ -102,7 +102,5 @@ public class PollService {
         }
         return isAct;
     }
-
-
 
 }
