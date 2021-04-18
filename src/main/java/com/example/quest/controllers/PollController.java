@@ -35,8 +35,9 @@ public class PollController {
      * @return - возвращает список опросов
      */
     @GetMapping
-    public PollsResponse getPolls() {
-        return pollService.getPolls();
+    public PollsResponse getPolls(@RequestParam(value = "filter", required = false) String filter,
+                                  @RequestParam(value = "sort", required = false) String sort) {
+        return pollService.getPolls(filter, sort);
     }
 
     /**

@@ -13,10 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Сервис опросов
@@ -46,12 +44,28 @@ public class PollService {
         return pollResponseConverter(newPoll);
     }
 
-    public PollsResponse getPolls() {
+    public PollsResponse getPolls(String filter, String sort) {
         List<PollEntity> listOfEntities = pollRepository.findAll();
         PollsResponse pollsResponse = new PollsResponse();
         List<PollResponse> listOfResponses = new ArrayList<>();
-        listOfEntities.forEach(list -> listOfResponses.add(pollResponseConverter(list)));
-        pollsResponse.setPolls(listOfResponses);
+        listOfEntities.forEach(poll -> listOfResponses.add(pollResponseConverter(poll)));
+        List<PollResponse> list = listOfResponses;
+        if (filter != null) {
+            if (filter.equals("active")) {
+                list = list.stream().filter(PollResponse::isActivity).collect(Collectors.toList());
+            } else if (filter.equals("notActive")) {
+                list = listOfResponses.stream().filter(poll -> !poll.isActivity()).collect(Collectors.toList());
+            }
+        }
+        if (sort != null) {
+            if (sort.equals("startDate")) {
+                list.sort(Comparator.comparing(PollResponse::getStartDate));
+            } else if (sort.equals("startDateReverse")) {
+                list.sort(Comparator.comparing(PollResponse::getStartDate));
+                Collections.reverse(list);
+            }
+        }
+        pollsResponse.setPolls(list);
         return pollsResponse;
     }
 
