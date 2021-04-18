@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!--Создание таблицы опросов-->
+    <changeSet author="marshakov" id="20210418195010_1">
+        <createTable tableName="poll_table">
+            <column name="poll_id" type="UUID">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_date" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="finish_date" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="creation_date" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activity" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!--Создание таблицы вопросов-->
+    <changeSet author="marshakov" id="20210418195010_2">
+        <createTable tableName="question_table">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="poll_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="text" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="response" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activity" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="question_table" baseColumnNames="poll_id" constraintName="question_poll_fk" referencedTableName="poll_table"
+                                 referencedColumnNames="poll_id" onUpdate="CASCADE" onDelete="CASCADE"/>
+    </changeSet>
+
+</databaseChangeLog>
