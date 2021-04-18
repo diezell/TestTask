@@ -1,14 +1,9 @@
 package com.example.quest.services;
 
-import com.example.quest.dtoPoll.PollChangeRequest;
-import com.example.quest.dtoPoll.PollRequest;
-import com.example.quest.dtoPoll.PollResponse;
-import com.example.quest.dtoPoll.PollsResponse;
-import com.example.quest.entities.PollEntity;
-import com.example.quest.entities.QuestionEntity;
+import com.example.quest.dtoPoll.*;
+import com.example.quest.entities.*;
 import com.example.quest.exceptions.NotFoundException;
-import com.example.quest.repositories.PollRepository;
-import com.example.quest.repositories.QuestionRepository;
+import com.example.quest.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,18 +46,31 @@ public class PollService {
         listOfEntities.forEach(poll -> listOfResponses.add(pollResponseConverter(poll)));
         List<PollResponse> list = listOfResponses;
         if (filter != null) {
-            if (filter.equals("active")) {
-                list = list.stream().filter(PollResponse::isActivity).collect(Collectors.toList());
-            } else if (filter.equals("notActive")) {
-                list = listOfResponses.stream().filter(poll -> !poll.isActivity()).collect(Collectors.toList());
+            switch (filter) {
+                case "active":
+                    list = list.stream().filter(PollResponse::isActivity).collect(Collectors.toList());
+                    break;
+                case "notActive":
+                    list = listOfResponses.stream().filter(poll -> !poll.isActivity()).collect(Collectors.toList());
+                    break;
             }
         }
         if (sort != null) {
-            if (sort.equals("startDate")) {
-                list.sort(Comparator.comparing(PollResponse::getStartDate));
-            } else if (sort.equals("startDateReverse")) {
-                list.sort(Comparator.comparing(PollResponse::getStartDate));
-                Collections.reverse(list);
+            switch (sort) {
+                case "startDate":
+                    list.sort(Comparator.comparing(PollResponse::getStartDate));
+                    break;
+                case "startDateReverse":
+                    list.sort(Comparator.comparing(PollResponse::getStartDate));
+                    Collections.reverse(list);
+                    break;
+                case "name":
+                    list.sort(Comparator.comparing(PollResponse::getName));
+                    break;
+                case "nameReverse":
+                    list.sort(Comparator.comparing(PollResponse::getName));
+                    Collections.reverse(list);
+                    break;
             }
         }
         pollsResponse.setPolls(list);
@@ -89,10 +97,12 @@ public class PollService {
         return pollResponseConverter(entity);
     }
 
-    public void deletePoll(UUID id) {
+    public void deletePoll(UUID id) throws NotFoundException {
         List<QuestionEntity> allQuestions = questionRepository.findAllByPollEntityId(id);
         allQuestions.forEach(question -> questionRepository.deleteById(question.getId()));
-        pollRepository.deleteById(id);
+        if (!pollRepository.existsById(id)) {
+            throw new NotFoundException("Poll was not found");
+        } else pollRepository.deleteById(id);
     }
 
     private PollResponse pollResponseConverter(PollEntity entity) {
@@ -106,7 +116,7 @@ public class PollService {
         return response;
     }
 
-    private Boolean isActivity(PollEntity entity) {   //todo: refactoring
+    private Boolean isActivity(PollEntity entity) {
         boolean isAct = entity.getStartDate().isBefore(LocalDateTime.now())
                 && entity.getFinishDate().isAfter(LocalDateTime.now());
         if (pollRepository.existsById(entity.getId())) {

@@ -1,9 +1,6 @@
 package com.example.quest.controllers;
 
-import com.example.quest.dtoQuestion.AnswerRequest;
-import com.example.quest.dtoQuestion.QuestionRequest;
-import com.example.quest.dtoQuestion.QuestionResponse;
-import com.example.quest.dtoQuestion.QuestionsResponse;
+import com.example.quest.dtoQuestion.*;
 import com.example.quest.exceptions.NotFoundException;
 import com.example.quest.services.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;

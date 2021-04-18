@@ -1,21 +1,13 @@
 package com.example.quest.services;
 
-import com.example.quest.dtoQuestion.AnswerRequest;
-import com.example.quest.dtoQuestion.QuestionRequest;
-import com.example.quest.dtoQuestion.QuestionResponse;
-import com.example.quest.dtoQuestion.QuestionsResponse;
-import com.example.quest.entities.PollEntity;
-import com.example.quest.entities.QuestionEntity;
+import com.example.quest.dtoQuestion.*;
+import com.example.quest.entities.*;
 import com.example.quest.exceptions.NotFoundException;
-import com.example.quest.repositories.PollRepository;
-import com.example.quest.repositories.QuestionRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import com.example.quest.repositories.*;
+import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Сервис вопросов

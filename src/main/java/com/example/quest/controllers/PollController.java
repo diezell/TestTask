@@ -1,9 +1,6 @@
 package com.example.quest.controllers;
 
-import com.example.quest.dtoPoll.PollChangeRequest;
-import com.example.quest.dtoPoll.PollRequest;
-import com.example.quest.dtoPoll.PollResponse;
-import com.example.quest.dtoPoll.PollsResponse;
+import com.example.quest.dtoPoll.*;
 import com.example.quest.exceptions.NotFoundException;
 import com.example.quest.services.PollService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +28,8 @@ public class PollController {
 
     /**
      * GET-запрос на получение всех опросов
-     * @param
+     * @param filter - фильтрация опросов (необязательный параметр)
+     * @param sort - сортировка опросов (необязательный параметр)
      * @return - возвращает список опросов
      */
     @GetMapping
