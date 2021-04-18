@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!--Заполнение таблицы опросов-->
+    <changeSet author="marshakov" id="20210418203645_1">
+        <insert tableName="poll_table">
+            <column name="poll_id" value="c684098c-0b35-4d35-9f35-aabb7ccd3530"/>
+            <column name="name" value="Ежедневный опрос"/>
+            <column name="start_date" value="12-04-2019 10:00"/>
+            <column name="finish_date" value="20-04-2022 20:00"/>
+            <column name="creation_date" value="18-04-2021 20:36"/>
+            <column name="activity" value="false"/>
+        </insert>
+        <insert tableName="poll_table">
+            <column name="poll_id" value="642eb659-4eb8-4cbc-865f-d635710108fc"/>
+            <column name="name" value="Опрос по знаниям программирования"/>
+            <column name="start_date" value="15-12-2021 17:45"/>
+            <column name="finish_date" value="22-02-2022 23:10"/>
+            <column name="creation_date" value="18-04-2021 20:36"/>
+            <column name="activity" value="false"/>
+        </insert>
+        <insert tableName="poll_table">
+            <column name="poll_id" value="bca17f74-8c13-421b-88c2-4d80ed26e284"/>
+            <column name="name" value="Космический опрос"/>
+            <column name="start_date" value="01-06-2021 09:00"/>
+            <column name="finish_date" value="01-09-2022 09:00"/>
+            <column name="creation_date" value="18-04-2021 20:36"/>
+            <column name="activity" value="false"/>
+        </insert>
+        <insert tableName="poll_table">
+            <column name="poll_id" value="a242df3e-6bf7-4eb2-b3d7-a7c8e9bbc5d4"/>
+            <column name="name" value="Автомобильный опрос"/>
+            <column name="start_date" value="25-06-2015 09:00"/>
+            <column name="finish_date" value="25-10-2025 09:00"/>
+            <column name="creation_date" value="18-04-2021 20:36"/>
+            <column name="activity" value="false"/>
+        </insert>
+        <insert tableName="poll_table">
+            <column name="poll_id" value="11b04722-1b83-4f89-9cbb-c592d304cafd"/>
+            <column name="name" value="Школьный опрос"/>
+            <column name="start_date" value="11-10-2015 16:00"/>
+            <column name="finish_date" value="26-11-2019 09:30"/>
+            <column name="creation_date" value="18-04-2021 20:36"/>
+            <column name="activity" value="false"/>
+        </insert>
+        <insert tableName="poll_table">
+            <column name="poll_id" value="bfc974f2-f607-4fef-a0a4-b53629d43185"/>
+            <column name="name" value="Опрос от инспектора ГАИ"/>
+            <column name="start_date" value="18-04-2021 16:00"/>
+            <column name="finish_date" value="18-04-2019 16:10"/>
+            <column name="creation_date" value="18-04-2021 20:36"/>
+            <column name="activity" value="false"/>
+        </insert>
+    </changeSet>
+
+    <!--Заполнение таблицы вопросов-->
+    <changeSet author="marshakov" id="20210418203645_2">
+        <!--Ежедневный опрос-->
+        <insert tableName="question_table">
+            <column name="id" value="aaac404c-27df-46db-b2aa-fde90f671ab0"/>
+            <column name="poll_id" value="c684098c-0b35-4d35-9f35-aabb7ccd3530"/>
+            <column name="text" value="Во сколько вы сегодня просунлись?"/>
+            <column name="response" value="Я проснулся в 7 утра"/>
+        </insert>
+        <insert tableName="question_table">
+            <column name="id" value="2406904c-7f7e-497c-8244-e67e69d60485"/>
+            <column name="poll_id" value="c684098c-0b35-4d35-9f35-aabb7ccd3530"/>
+            <column name="text" value="Какая была погода в 7 утра?"/>
+            <column name="response" value="Погода была превосходная, небо чистое, солнце светило;)"/>
+        </insert>
+        <insert tableName="question_table">
+            <column name="id" value="8c0935c9-b5f1-4081-bf6f-d405cfc14b7a"/>
+            <column name="poll_id" value="c684098c-0b35-4d35-9f35-aabb7ccd3530"/>
+            <column name="text" value="У вас сегодня выходной день?"/>
+            <column name="response" value="Нет, сегодня я буду работать!"/>
+        </insert>
+
+        <!--Опрос по знаниям программирования-->
+        <insert tableName="question_table">
+            <column name="id" value="76460932-f65f-48ad-81a4-455282ffb29e"/>
+            <column name="poll_id" value="642eb659-4eb8-4cbc-865f-d635710108fc"/>
+            <column name="text" value="Какие существуют принципы ООП?"/>
+            <column name="response" value="Полиморфизм, инкапсуляция, наследование"/>
+        </insert>
+        <insert tableName="question_table">
+            <column name="id" value="bfb5a634-340f-49bb-b869-c4ccd079ca13"/>
+            <column name="poll_id" value="642eb659-4eb8-4cbc-865f-d635710108fc"/>
+            <column name="text" value="Как расшифровывается JDK?"/>
+            <column name="response" value="Java Development Kit"/>
+        </insert>
+        <insert tableName="question_table">
+            <column name="id" value="60393693-c66c-4dd3-afac-08ff224bae8a"/>
+            <column name="poll_id" value="642eb659-4eb8-4cbc-865f-d635710108fc"/>
+            <column name="text" value="Какая самая распространенная версия Java?"/>
+            <column name="response" value="8"/>
+        </insert>
+        <insert tableName="question_table">
+            <column name="id" value="65704d9c-ed98-4d0c-87ca-76e4f06593ab"/>
+            <column name="poll_id" value="642eb659-4eb8-4cbc-865f-d635710108fc"/>
+            <column name="text" value="Какой интерфейс расширяет интерфейс List?"/>
+            <column name="response" value="Интерфейс Collection"/>
+        </insert>
+
+        <!--Космический опрос-->
+        <insert tableName="question_table">
+            <column name="id" value="5df8abad-d1ea-41b0-97a8-97453e58897d"/>
+            <column name="poll_id" value="bca17f74-8c13-421b-88c2-4d80ed26e284"/>
+            <column name="text" value="Какая страна первой запустила спутник?"/>
+            <column name="response" value="СССР"/>
+        </insert>
+        <insert tableName="question_table">
+            <column name="id" value="631f718f-20ab-4e40-95e7-e6c673c9de30"/>
+            <column name="poll_id" value="bca17f74-8c13-421b-88c2-4d80ed26e284"/>
+            <column name="text" value="Кто является первой женщиной-космонавтом?"/>
+            <column name="response" value="Валентина Терешкова"/>
+        </insert>
+
+        <!--Автомобильный опрос-->
+        <insert tableName="question_table">
+            <column name="id" value="87d59a01-607b-4784-b938-5625e05488e5"/>
+            <column name="poll_id" value="a242df3e-6bf7-4eb2-b3d7-a7c8e9bbc5d4"/>
+            <column name="text" value="Какая самая быстрая серийная машина?"/>
+            <column name="response" value="Bugatti"/>
+        </insert>
+        <insert tableName="question_table">
+            <column name="id" value="207470d6-7143-41b1-acc9-9687dfb46cdd"/>
+            <column name="poll_id" value="a242df3e-6bf7-4eb2-b3d7-a7c8e9bbc5d4"/>
+            <column name="text" value="Как называется машина без крыши?"/>
+            <column name="response" value="Кабриолет"/>
+        </insert>
+        <insert tableName="question_table">
+            <column name="id" value="7978eb22-cc61-4d47-915e-7a712bf93d58"/>
+            <column name="poll_id" value="a242df3e-6bf7-4eb2-b3d7-a7c8e9bbc5d4"/>
+            <column name="text" value="Самый массовый автопроизводитель"/>
+            <column name="response" value="Toyota"/>
+        </insert>
+        <insert tableName="question_table">
+            <column name="id" value="a1b069b6-c759-46b0-953a-82bb4416b209"/>
+            <column name="poll_id" value="a242df3e-6bf7-4eb2-b3d7-a7c8e9bbc5d4"/>
+            <column name="text" value="Какие компании принадлежат Volkswagen'у?"/>
+            <column name="response" value="Audi, Bentley, Bugatti, Lamborghini, Porsche и другие.."/>
+        </insert>
+
+        <!--Школьный опрос-->
+        <insert tableName="question_table">
+            <column name="id" value="afd4269e-37b1-48f4-8403-ddde1202ddfe"/>
+            <column name="poll_id" value="11b04722-1b83-4f89-9cbb-c592d304cafd"/>
+            <column name="text" value="В каком году началась Вторая мировая война?"/>
+            <column name="response" value="В 1939 году"/>
+        </insert>
+        <insert tableName="question_table">
+            <column name="id" value="1849486e-d2e2-47a8-9628-887886cdaf68"/>
+            <column name="poll_id" value="11b04722-1b83-4f89-9cbb-c592d304cafd"/>
+            <column name="text" value="Кто написал роман Преступление и наказание?"/>
+            <column name="response" value="Достоевский"/>
+        </insert>
+
+        <!--Опрос от инспектора ГАИ-->
+        <insert tableName="question_table">
+            <column name="id" value="4e353576-87cf-4a8d-b9ec-b1ff3c4aa57a"/>
+            <column name="poll_id" value="bfc974f2-f607-4fef-a0a4-b53629d43185"/>
+            <column name="text" value="Права на машину есть?"/>
+            <column name="response" value="Да"/>
+        </insert>
+        <insert tableName="question_table">
+            <column name="id" value="1463a2c0-1a3e-43aa-bd87-ae3cdb174050"/>
+            <column name="poll_id" value="bfc974f2-f607-4fef-a0a4-b53629d43185"/>
+            <column name="text" value="Один едете?"/>
+            <column name="response" value="Да"/>
+        </insert>
+        <insert tableName="question_table">
+            <column name="id" value="4bd1f85d-f611-452d-bd67-9a07b5ef29e1"/>
+            <column name="poll_id" value="bfc974f2-f607-4fef-a0a4-b53629d43185"/>
+            <column name="text" value="Не употребляли?"/>
+            <column name="response" value="Нет"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

@@ -37,13 +37,10 @@
             <column name="poll_id" type="UUID">
                 <constraints nullable="false"/>
             </column>
-            <column name="text" type="VARCHAR(255)">
+            <column name="text" type="VARCHAR(510)">
                 <constraints nullable="false"/>
             </column>
             <column name="response" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="activity" type="boolean">
                 <constraints nullable="false"/>
             </column>
         </createTable>
